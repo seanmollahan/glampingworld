@@ -1,0 +1,71 @@
+from tkinter import * # Import tkinter
+    
+class OrderApplication:
+    def __init__(self):
+        self.window = Tk() # Create a window
+        self.window.title("GW Order Processing Application") # Set title of a window
+        photo = PhotoImage(file="P:\GWlogo.gif") # specify the path to your file
+        label = Label(self.window, image=photo)  #put the image in a label to disdaply it in the window
+        label.grid(sticky = W, column = 1, row = 0)  # show the label on the screen
+        
+        self.subTotal = 0.0
+        self.orderTotal = 0.0
+        
+        #set up labels for the order in the left column of the window (Aligned left: W)
+        lbl = Label(self.window, text ="Customer Name:", font = "Times 12 bold")
+        lbl.grid(sticky = W, column = 0, row = 2,)
+        lbl = Label(self.window, text ="Product Name:", font = "Times 12 bold")
+        lbl.grid(sticky = W, column = 0, row = 3)
+        lbl = Label(self.window, text ="Product Quantity:", font = "Times 12 bold")
+        lbl.grid(sticky = W, column = 0, row = 4)
+        lbl = Label(self.window, text = "Product Price:", font = "Times 12 bold")
+        lbl.grid(sticky = W, column = 0, row = 5)
+        lbl = Label(self.window, text ="Sales Tax: 13%", font = "Times 11 bold")
+        lbl.grid(sticky = W, column = 0, row = 7)
+        lbl = Label(self.window, text ="2% discount: If applicable", font = "Times 11 bold")
+        lbl.grid(sticky = W, column = 0, row = 6)
+
+        # set up the input area and assigning variables
+        self.CustomerNameVar = StringVar()
+        Entry(self.window, width = 51, textvariable = self.CustomerNameVar).grid(sticky = W, row = 2, column = 1)
+        self.ProductNameVar = StringVar()
+        Entry(self.window, width = 51, textvariable = self.ProductNameVar).grid(sticky = W, row = 3, column = 1)
+        self.ProductQuantityVar = StringVar()
+        Entry(self.window, width = 51, textvariable = self.ProductQuantityVar).grid(sticky = W, row = 4, column = 1)
+        self.ProductPriceVar = StringVar()
+        Entry(self.window, width = 51, textvariable = self.ProductPriceVar).grid(sticky = W, row = 5, column = 1)
+        
+        #set up the output area using two labels and two buttons
+
+        Button(self.window, text = "Calculate Subtotal", font = "Times 13 bold", bg="green", fg="black", command = self.computeSubtotal).grid(row = 9, column = 0, sticky = W)
+        Button(self.window, text = "Calculate Order Total", font = "Times 14 bold", bg="green", fg="black", command = self.computeTotal).grid(row = 10, column = 0, sticky = W)
+        Button(self.window, text = "Help", font = "Times 14 bold", bg="yellow", fg="black").grid(row = 10, column = 1, sticky = E)
+        self.window.mainloop() # Create an event loop to display the window
+
+    
+    def computeSubtotal(self):
+        Subtotal = self.getSubtotal(
+            float(self.ProductPriceVar.get()),
+            int(self.ProductQuantityVar.get()))
+        self.subTotal = Subtotal
+        lbl = Label(self.window, text ="Subtotal: {:10.2f}".format(Subtotal), font = "Times 14 bold")
+        lbl.grid(sticky = W, column = 1, row = 7)
+        
+         #calculate Monthly Payment using  the formula provided    
+    def getSubtotal(self,Productprice, Productquantity):
+        Subtotal = Productprice * Productquantity
+        return Subtotal
+
+    def computeTotal(self):
+        Ordertotal = self.getOrdertotal(
+            float(self.subTotal))
+        lbl = Label(self.window, text ="Order Total: {:10.2f}".format(Ordertotal), font = "Times 14 bold")
+        lbl.grid(sticky = W, column = 1, row = 8)
+        self.orderTotal = Ordertotal
+
+
+    def getOrdertotal(self, Subtotal):
+        Ordertotal = (Subtotal * 0.13) + Subtotal
+        return Ordertotal
+        
+OrderApplication()  # Create GUI 
