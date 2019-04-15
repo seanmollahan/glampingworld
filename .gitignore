@@ -1,55 +1,38 @@
-from tkinter import * # Import tkinter
+from tkinter import * #import tkinter
+window = Tk()
+window.title('Glamping World Order Processing Application')
 
-class LoanCalculator:
-    def __init__(self):
-        window = Tk() # Create a window
-        window.title("Glamping World Shopping Cart") # Set title of a window
-                
-        # set up labels for the loan calculator in the left column of the window, align labels left (Sticky=W)
-        Label(window, text = "Customer Name").grid(row = 1, column = 1, sticky = W) 
-        Label(window, text = "Product ID").grid(row = 2, column = 1, sticky = W)
-        Label(window, text = "Product Quantity").grid(row = 3, column = 1, sticky = W)
-        Label(window, text = "Product Price").grid(row = 4, column = 1, sticky = W)
-        Label(window, text = "Subtotal ($)").grid(row = 5, column = 1, sticky = W)
-        Label(window, text = "Tax ($)").grid(row = 6, column = 1, sticky = W)
-        Label(window, text = "Total Payment ($)").grid(row = 7, column = 1, sticky = W)
+lbl = Label(window, text ="Customer Name:")
+lbl.grid(sticky = W, column = 0, row = 0)
+txt = Entry(window, width = 30)
+txt.grid(column=1, row=0)
+lbl = Label(window, text ="Product Name:")
+lbl.grid(sticky = W, column = 0, row = 1)
+txt = Entry(window, width = 30)
+txt.grid(column=1, row=1)
+lbl = Label(window, text ="Product Quantity:")
+lbl.grid(sticky = W, column = 0, row = 2)
+txt = Entry(window, width = 30)
+txt.grid(column=1, row=2)
+lbl = Label(window, text = "Product Price:")
+lbl.grid(sticky = W, column = 0, row = 3)
+txt = Entry(window, width = 30)
+txt.grid(column=1, row=3)
+lbl = Label(window, text ="Subtotal:")
+lbl.grid(sticky = W, column = 0, row = 4)
+txt = Entry(window, width = 30)
+txt.grid(column=1, row=4)
+lbl = Label(window, text ="Order Total:")
+lbl.grid(sticky = W, column = 0, row = 5)
+txt = Entry(window, width = 30)
+txt.grid(column=1, row=5)
 
-        # set up the input area for the calculator in the right column, using Entry for textboxes and assigning the values entered to variables
-        self.customerNameVar = StringVar()
-        Entry(window, textvariable = self.customerNameVar,justify = LEFT).grid(row = 1, column = 2)
-        self.productIDVar = StringVar()
-        Entry(window, textvariable = self.productIDVar, justify = LEFT).grid(row = 2, column = 2)
-        self.productQuantityVar = StringVar()
-        Entry(window, textvariable = self.productQuantityVar, justify = LEFT).grid(row = 3, column = 2)
-        self.productPriceVar = StringVar()
-        Entry(window, textvariable = self.productPriceVar, justify = LEFT).grid(row = 4, column = 2)
+btn = Button(window, text ="Calculate Order Total", bg="green", fg="black")
+btn.grid(column = 0, row = 8)
+btn = Button(window, text ="Help", bg="red", fg="black")
+btn.grid(column = 8, row = 8)
 
-        # set up the output area for the calculator below the input area, using two labels and a button; the button calls the function computePayment when it's clicked
-
-        self.subtotalVar = StringVar()
-        Label(window, textvariable = self.subtotalVar).grid(row = 5, column = 2, sticky = E)
-        self.taxVar = StringVar()
-        Label(window, textvariable = self.taxVar).grid(row = 6, column = 2, sticky = E)
-        self.totalPaymentVar = StringVar()
-        Label(window, textvariable = self.totalPaymentVar).grid(row = 6, column = 2, sticky = E)
-        Button(window, text = "Compute Total Payment", command = self.computePayment).grid(row = 8, column = 2, sticky = E)
-
-        window.mainloop() # Create an event loop to display the window
-        
-    # function computePayment calls the getMonthlyPayment function with arguments assigned the values from the user
-    def computePayment(self):
-        monthlyPayment = self.getMonthlyPayment(
-            float(self.loanAmountVar.get()),
-            float(self.annualInterestRateVar.get()) / 1200, 
-            int(self.numberOfYearsVar.get()))
-        self.monthlyPaymentVar.set(format(monthlyPayment, '10.2f')) #assign the value and format the monthlyPaymentVar to the value of monthlyPayment returned from getMonthlyPayment function
-        totalPayment = float(self.monthlyPaymentVar.get()) * 12 * int(self.numberOfYearsVar.get()) #calculate totalPayment 
-        self.totalPaymentVar.set(format(totalPayment, '10.2f')) #output totalPayment formatted to two decimal places in the totalPaymentVar
-
-    # calculate Monthly Payment using the formula provided
-    def getMonthlyPayment(self,loanAmount, monthlyInterestRate, numberOfYears):
-        monthlyPayment = loanAmount * monthlyInterestRate / (1 
-            - 1 / (1 + monthlyInterestRate) ** (numberOfYears * 12))
-        return monthlyPayment
-
-LoanCalculator() # Create GUI 
+photo = PhotoImage(file="P:\GWlogo.gif") # specify the path to your file
+label = Label(root, image=photo)  #put the image in a label to disdaply it in the window
+label.pack()  # show the label on the screen
+window.mainloop()
