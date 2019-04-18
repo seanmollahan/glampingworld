@@ -11,16 +11,16 @@ class OrderApplication:
         self.subTotal = 0.0
         self.orderTotal = 0.0
         
-        #set up labels for the order in the left column of the window (Aligned left: W)
+        #set up labels the left column of the window (Aligned left)
         lbl = Label(self.window, text ="Customer Name:", font = "Times 12 bold")
         lbl.grid(sticky = W, column = 0, row = 2,)
         lbl = Label(self.window, text ="Product Name:", font = "Times 12 bold")
         lbl.grid(sticky = W, column = 0, row = 3)
         lbl = Label(self.window, text ="Product Quantity:", font = "Times 12 bold")
         lbl.grid(sticky = W, column = 0, row = 4)
-        lbl = Label(self.window, text = "Product Price:", font = "Times 12 bold")
+        lbl = Label(self.window, text = "Product Price (USD):", font = "Times 12 bold")
         lbl.grid(sticky = W, column = 0, row = 5)
-        w = Checkbutton(self.window, text = "2% discount", font = "Times 12 bold").grid(sticky = W, row = 6, column = 0)
+        w = Checkbutton(self.window, text = "2% discount", font = "Times 12 bold").grid(sticky = W, row = 6, column = 1)
 
         # set up the input area and assigning variables
         self.CustomerNameVar = StringVar()
@@ -34,8 +34,9 @@ class OrderApplication:
         
         #set up the output area using two labels and two buttons
 
-        Button(self.window, text = "Calculate Subtotal", font = "Times 13 bold", bg="green", fg="black", command = self.computeSubtotal).grid(row = 9, column = 0, sticky = W)
-        Button(self.window, text = "Calculate Order Total", font = "Times 14 bold", bg="green", fg="black", command = self.computeTotal).grid(row = 10, column = 0, sticky = W)
+        R1 = Radiobutton(self.window, text = "English", font = "Times 12 bold"). grid(row = 0, column = 0, sticky = W)
+        Button(self.window, text = "Calculate Subtotal", font = "Times 13 bold", bg="green", fg="black", command = self.computeSubtotal).grid(row = 6, column = 0, sticky = W)
+        Button(self.window, text = "Calculate Order Total", font = "Times 14 bold", bg="green", fg="black", command = self.computeTotal).grid(row = 8, column = 0, sticky = W)
         Button(self.window, text = "Help", font = "Times 14 bold", bg="yellow", fg="black").grid(row = 10, column = 1, sticky = E)
         self.window.mainloop() # Create an event loop to display the window
 
