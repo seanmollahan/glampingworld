@@ -20,10 +20,7 @@ class OrderApplication:
         lbl.grid(sticky = W, column = 0, row = 4)
         lbl = Label(self.window, text = "Product Price:", font = "Times 12 bold")
         lbl.grid(sticky = W, column = 0, row = 5)
-        lbl = Label(self.window, text ="Sales Tax: 13%", font = "Times 11 bold")
-        lbl.grid(sticky = W, column = 0, row = 7)
-        lbl = Label(self.window, text ="2% discount: If applicable", font = "Times 11 bold")
-        lbl.grid(sticky = W, column = 0, row = 6)
+        w = Checkbutton(self.window, text = "2% discount", font = "Times 12 bold").grid(sticky = W, row = 6, column = 0)
 
         # set up the input area and assigning variables
         self.CustomerNameVar = StringVar()
@@ -70,4 +67,4 @@ class OrderApplication:
         Ordertotal = (Subtotal * 0.13) + Subtotal
         return Ordertotal
         
-OrderApplication()  # Create GUI 
+OrderApplication()  # Create GUI
