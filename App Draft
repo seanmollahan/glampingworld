@@ -50,6 +50,8 @@ class OrderApplication:
         self.subTotal = Subtotal
         lbl = Label(self.window, text ="Subtotal: {:10.2f}".format(Subtotal), font = "Times 14 bold")
         lbl.grid(sticky = W, column = 1, row = 7)
+        lbl = Label(self.window, text ="Costa Rica sales tax is 13%".format(Subtotal), font = "Times 14 bold")
+        lbl.grid(sticky = W, column = 1, row = 8)
         
          #calculate Monthly Payment using  the formula provided    
     def getSubtotal(self,Productprice, Productquantity):
@@ -60,7 +62,7 @@ class OrderApplication:
         Ordertotal = self.getOrdertotal(
             float(self.subTotal))
         lbl = Label(self.window, text ="Order Total: {:10.2f}".format(Ordertotal), font = "Times 14 bold")
-        lbl.grid(sticky = W, column = 1, row = 8)
+        lbl.grid(sticky = W, column = 1, row = 9)
         self.orderTotal = Ordertotal
 
 
