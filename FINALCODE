@@ -11,7 +11,7 @@ class OrderApplication:
         self.spanish = StringVar()
         self.spanish.set(None)
 
-        #set up labels the left column of the window (Aligned left)
+        #left column labels of the window (Aligned left)
         lbl = Label(self.window, text ="Customer Name:", font = "Times 12 bold")
         lbl.grid(sticky = W, column = 0, row = 2,)
         lbl = Label(self.window, text ="Product Name:", font = "Times 12 bold")
@@ -46,8 +46,12 @@ class OrderApplication:
         Label(self.window, textvariable = self.subTotalVar, font = "Times 12 bold").grid(sticky = W, column = 1, row = 8)
         self.orderTotalVar = StringVar()
         Label(self.window, textvariable = self.orderTotalVar, font = "Times 12 bold").grid(sticky = W, column = 1, row = 10)
+        
+        # Radiobuttons to switch language
         Radiobutton(self.window, text = "English", font = "Times 12 bold"). grid(row = 0, column = 0, sticky = W)
         Radiobutton(self.window, text = "Spanish", variable = self.spanish, font = "Times 12 bold"). grid(row = 0, column = 0, sticky = E)
+        
+        #Two buttons: Calculate order and help 
         Button(self.window, text = "Calculate Order Total", font = "Times 14 bold", bg="green", fg="black", command = self.computeTotal).grid(row = 11, column = 0, sticky = W)
         Button(self.window, text = "Help", font = "Times 14 bold", bg="yellow", fg="black").grid(row = 11, column = 1, sticky = E)
         
@@ -59,7 +63,7 @@ class OrderApplication:
 
 
     
-
+    # define the command
 
     def computeTotal(self):
             subTotal = self.getSubtotal(
